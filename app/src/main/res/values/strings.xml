@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WilliamsScheduler</string>
+    <string name="schedule_title">Today\'s Schedule</string>
+    <string name="event_title">Title of Event</string>
+    <string name="enter_event_title">Enter the name of the event</string>
+    <string name="event_time">Start Time</string>
+    <string name="event_duration">Duration</string>
+    <string name="event_description">Description</string>
+    <string name="event_description_hint">Type a short description of the event</string>
+    <string name="time_picker_title">Time of Event:</string>
+    <string name="action_settings">Settings</string>
+</resources>
