@@ -21,9 +21,10 @@ public class EventLab {
         mAppContext = appContext;
         mDayEvents = new ArrayList<DayEvent>();
 
-        for( int i = 0; i < 10; i++ ) {
+        for( int i = 0; i < 17; i++ ) {
             DayEvent d = new DayEvent();
-            d.setTitle( "Event #" + i );
+            d.setTitle( "Free" );
+            d.setHour(8 + i);
             mDayEvents.add( d );
         }
 
@@ -31,7 +32,7 @@ public class EventLab {
 
         for( int i = 0; i < 10; i++ ) {
             ToDoItem t = new ToDoItem();
-            t.setTitle( "Event #" + i );
+            t.setTitle( "To-Do #" + i );
             mToDoItems.add( t );
         }
 

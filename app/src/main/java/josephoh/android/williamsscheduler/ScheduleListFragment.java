@@ -1,7 +1,12 @@
 package josephoh.android.williamsscheduler;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -10,27 +15,68 @@ import java.util.ArrayList;
  */
 public class ScheduleListFragment extends android.support.v4.app.ListFragment {
 
+    private final static String TAG = "ScheduleListFragment";
+
     private ArrayList<DayEvent> mDayEvents;
 
     @Override
     public void onCreate( Bundle savedInstanceState ) {
-        super.onCreate( savedInstanceState );
+        super.onCreate(savedInstanceState);
 
         // Sets the Activity's Action Bar Title
         getActivity().setTitle(R.string.schedule_title);
 
         // Returns the ArrayList for the Day's Events and To Do Items
-        mDayEvents = EventLab.get( getActivity() ).getDayEvents();
+        mDayEvents = EventLab.get(getActivity()).getDayEvents();
 
         // Creates an ArrayAdapter that manages DayEvent objects
-        ArrayAdapter<DayEvent> adapter =
-                new ArrayAdapter<DayEvent>( getActivity(),
-                        android.R.layout.simple_list_item_1,
-                        mDayEvents );
+        DayEventAdapter adapter =
+                new DayEventAdapter( mDayEvents );
 
         // Sets the adapter for the ListView
-        setListAdapter( adapter );
+        setListAdapter(adapter);
     }
 
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+         DayEvent dayEvent = ( (DayEventAdapter)getListAdapter() ).getItem(position);
+         Log.d(TAG, dayEvent.getTitle() + "was clicked");
+        }
 
+    private class DayEventAdapter extends ArrayAdapter<DayEvent> {
+
+        public DayEventAdapter(ArrayList<DayEvent> events) {
+            super(getActivity(), 0, events);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // If there is no view, then inflate one
+            if (convertView == null) {
+                convertView = getActivity().getLayoutInflater()
+                        .inflate(R.layout.list_item_day_event, null);
+            }
+
+            // Configure the view for the DayEvent
+            DayEvent dE = getItem(position);
+            // Sets the time
+            TextView timeTextView = (TextView) convertView.findViewById(R.id.time_id);
+            if (dE.getHour() < 12) {
+                timeTextView.setText(dE.getHour() + dE.getMinute() + " AM");
+            } else if (dE.getHour() == 24) {
+                timeTextView.setText(12 + " AM");
+            } else if (dE.getHour() == 12) {
+                timeTextView.setText( 12 + " PM");
+            } else {
+                timeTextView.setText((dE.getHour() - 12) + dE.getMinute() + " PM");
+            }
+            // Sets the title
+            TextView titleTextView = (TextView) convertView.findViewById(R.id.title_id);
+            titleTextView.setText( dE.getTitle() );
+            // Sets the divider bar
+            View dividerLine = (View) convertView.findViewById(R.id.divider_line);
+
+            return convertView;
+        }
+    }
 }

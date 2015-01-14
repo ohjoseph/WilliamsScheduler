@@ -16,6 +16,9 @@ public class DayEvent {
     private String mTitle;
     // The description of the event
     private String mDesc;
+    // The time of the Event
+    private int mHour;
+    private int mMinute;
 
     public UUID getID() {
         return mID;
@@ -44,4 +47,15 @@ public class DayEvent {
     public void setDesc(String desc) {
         mDesc = desc;
     }
+
+    public int getHour() { return mHour; }
+
+    public void setHour(int hour) { mHour = hour; }
+
+    public int getMinute() { return mMinute; }
+
+    public void setMinute(int minute) { mMinute = minute; }
+
+    @Override
+    public String toString() { return mTitle; }
 }
