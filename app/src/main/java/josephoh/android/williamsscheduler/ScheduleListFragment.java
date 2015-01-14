@@ -1,6 +1,7 @@
 package josephoh.android.williamsscheduler;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,15 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
 
         // Returns the ArrayList for the Day's Events and To Do Items
         mDayEvents = EventLab.get( getActivity() ).getDayEvents();
+
+        // Creates an ArrayAdapter that manages DayEvent objects
+        ArrayAdapter<DayEvent> adapter =
+                new ArrayAdapter<DayEvent>( getActivity(),
+                        android.R.layout.simple_list_item_1,
+                        mDayEvents );
+
+        // Sets the adapter for the ListView
+        setListAdapter( adapter );
     }
 
 
