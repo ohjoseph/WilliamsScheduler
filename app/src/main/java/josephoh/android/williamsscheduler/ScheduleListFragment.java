@@ -44,7 +44,7 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
         // Starts a new Day Event
         Intent i = new Intent( getActivity(), MainActivity.class );
         i.putExtra( ScheduleFragment.EXTRA_DAYEVENT_ID, dayEvent.getID() );
-        startActivity( i );
+        startActivity(i);
     }
 
     private class DayEventAdapter extends ArrayAdapter<DayEvent> {
@@ -80,8 +80,12 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
             // Sets the title
             TextView titleTextView = (TextView) convertView.findViewById(R.id.title_id);
             titleTextView.setText( dE.getTitle() );
+
             // Sets the divider bar
-            View dividerLine = (View) convertView.findViewById(R.id.divider_line);
+            View dividerLine = convertView.findViewById(R.id.divider_line);
+
+            // Sets the Time Button
+            // Button timeButton = (Button) convertView.findViewById( R.id.event_time_button );
 
             return convertView;
         }
