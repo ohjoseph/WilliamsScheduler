@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 /**
  * Created by Joseph on 1/10/15.
@@ -19,6 +20,7 @@ import java.util.Calendar;
 public class ScheduleFragment extends Fragment {
 
     private static final String DIALOG_TIME = "time";
+    public static final String EXTRA_DAYEVENT_ID = "com.josephoh.williamsScheduler.DayEvent_id";
 
     private DayEvent mDayEvent;
     private EditText mTitle;
@@ -30,10 +32,23 @@ public class ScheduleFragment extends Fragment {
         // Required public empty constructor
     }
 
+    public static ScheduleFragment newInstance( UUID uuid ) {
+        Bundle args = new Bundle();
+        args.putSerializable( EXTRA_DAYEVENT_ID, uuid );
+
+        ScheduleFragment fragment = new ScheduleFragment();
+        fragment.setArguments( args );
+
+        return fragment;
+    }
+
     @Override
     public void onCreate( Bundle savedInstanceState ) {
         super.onCreate( savedInstanceState );
-        mDayEvent = new DayEvent();
+
+        UUID eventID = (UUID) getArguments().getSerializable( EXTRA_DAYEVENT_ID );
+
+        mDayEvent = EventLab.get( getActivity() ).getDayEvent( eventID );
     }
 
     @Override

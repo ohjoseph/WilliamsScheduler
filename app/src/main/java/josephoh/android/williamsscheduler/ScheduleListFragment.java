@@ -1,7 +1,7 @@
 package josephoh.android.williamsscheduler;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -39,9 +39,13 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-         DayEvent dayEvent = ( (DayEventAdapter)getListAdapter() ).getItem(position);
-         Log.d(TAG, dayEvent.getTitle() + "was clicked");
-        }
+        DayEvent dayEvent = ( (DayEventAdapter)getListAdapter() ).getItem(position);
+
+        // Starts a new Day Event
+        Intent i = new Intent( getActivity(), MainActivity.class );
+        i.putExtra( ScheduleFragment.EXTRA_DAYEVENT_ID, dayEvent.getID() );
+        startActivity( i );
+    }
 
     private class DayEventAdapter extends ArrayAdapter<DayEvent> {
 
@@ -59,17 +63,20 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
 
             // Configure the view for the DayEvent
             DayEvent dE = getItem(position);
+
             // Sets the time
             TextView timeTextView = (TextView) convertView.findViewById(R.id.time_id);
-            if (dE.getHour() < 12) {
-                timeTextView.setText(dE.getHour() + dE.getMinute() + " AM");
-            } else if (dE.getHour() == 24) {
-                timeTextView.setText(12 + " AM");
-            } else if (dE.getHour() == 12) {
-                timeTextView.setText( 12 + " PM");
-            } else {
-                timeTextView.setText((dE.getHour() - 12) + dE.getMinute() + " PM");
+            int hour = dE.getHour();
+            if (hour < 12 ) {
+                timeTextView.setText( hour + dE.getMinute() + " AM" );
+            } else if ( hour == 24 ) {
+                timeTextView.setText(12 + dE.getMinute() + " AM");
+            } else if ( hour == 12 ) {
+                timeTextView.setText( 12 + dE.getMinute() + " PM");
+            } else if (hour > 12) {
+                timeTextView.setText( (hour%12) + dE.getMinute() + " PM");
             }
+
             // Sets the title
             TextView titleTextView = (TextView) convertView.findViewById(R.id.title_id);
             titleTextView.setText( dE.getTitle() );
@@ -78,5 +85,13 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
 
             return convertView;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Updates the ListView with the new information
+        ( (DayEventAdapter)getListAdapter() ).notifyDataSetChanged();
     }
 }
