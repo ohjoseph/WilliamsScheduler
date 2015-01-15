@@ -42,7 +42,7 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
         DayEvent dayEvent = ( (DayEventAdapter)getListAdapter() ).getItem(position);
 
         // Starts a new Day Event
-        Intent i = new Intent( getActivity(), MainActivity.class );
+        Intent i = new Intent( getActivity(), DayEventActivity.class );
         i.putExtra( ScheduleFragment.EXTRA_DAYEVENT_ID, dayEvent.getID() );
         startActivity(i);
     }
