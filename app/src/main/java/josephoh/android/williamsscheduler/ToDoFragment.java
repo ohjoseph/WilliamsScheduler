@@ -63,13 +63,16 @@ public class ToDoFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                // Changes the title
+                mToDoItem.setTitle( s.toString() );
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                // Empty method
             }
         });
+
+        return v;
     }
 }
