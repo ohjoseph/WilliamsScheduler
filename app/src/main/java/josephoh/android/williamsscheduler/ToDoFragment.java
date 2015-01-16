@@ -21,6 +21,7 @@ public class ToDoFragment extends Fragment {
 
     private ToDoItem mToDoItem;
     private EditText mTitleText;
+    private EditText mDescription;
 
     public ToDoFragment() {
         // Empty constructor
@@ -65,6 +66,25 @@ public class ToDoFragment extends Fragment {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 // Changes the title
                 mToDoItem.setTitle( s.toString() );
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Empty method
+            }
+        });
+
+        // Initializes the description Textfield
+        mDescription = (EditText) v.findViewById( R.id.todo_description );
+        mDescription.addTextChangedListener( new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Empty Method
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                mToDoItem.setDesc( s.toString() );
             }
 
             @Override
