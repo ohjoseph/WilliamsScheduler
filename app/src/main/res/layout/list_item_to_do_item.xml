@@ -3,6 +3,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-    <
+    <Button
+        android:id="@+id/todo_list_item_priority_button"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@color/material_blue_grey_800"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/todo_list_item_title"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/todo_list_item_priority_button"
+        android:layout_marginLeft="10dp"
+        android:text="Walk the dog"
+        android:gravity="center_vertical"
+        android:textSize="16sp"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@id/todo_list_item_title"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/todo_list_item_priority_button">
+
+
+        <TextView
+            android:id="@+id/todo_list_item_context"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Home"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/todo_list_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="10 minutes"
+            android:gravity="center"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

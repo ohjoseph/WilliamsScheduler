@@ -9,18 +9,18 @@
         android:layout_height="wrap_content"
         android:text="Title"
         style="?android:listSeparatorTextViewStyle"
-        android:layout_marginLeft="13dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="5dp"
-        android:textSize="16sp"/>
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp" />
 
     <EditText
         android:id="@+id/todo_title_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter your task here"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="15dp"
         android:textSize="20sp"/>
 
@@ -28,8 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
 
         <Button
             android:id="@+id/priority_button"
@@ -47,14 +47,63 @@
             android:textSize="16sp"
             android:layout_marginLeft="12dp"/>
 
+        <View
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/context_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:hint="Home"
+            android:gravity="center_vertical"
+            android:editable="true" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/to_do_time_textView"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:hint="10"
+            android:editable="true"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="minutes"
+            android:layout_marginLeft="5dp"
+            android:gravity="center"/>
+
+
         </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Description"
+        style="?android:listSeparatorTextViewStyle"/>
 
     <EditText
         android:id="@+id/todo_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Enter a description"
-        android:layout_margin="16dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:gravity="center_horizontal||left"/>
 
 </LinearLayout>
