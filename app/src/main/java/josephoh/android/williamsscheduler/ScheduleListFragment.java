@@ -47,6 +47,14 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
         startActivity(i);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Updates the ListView with the new information
+        ( (DayEventAdapter)getListAdapter() ).notifyDataSetChanged();
+    }
+
     private class DayEventAdapter extends ArrayAdapter<DayEvent> {
 
         public DayEventAdapter(ArrayList<DayEvent> events) {
@@ -91,11 +99,4 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        // Updates the ListView with the new information
-        ( (DayEventAdapter)getListAdapter() ).notifyDataSetChanged();
-    }
 }

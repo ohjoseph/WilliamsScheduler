@@ -8,26 +8,26 @@ import java.util.UUID;
 /**
  * Created by Joseph on 1/15/15.
  */
-public class ToDoLab {
+public class OtherLab {
 
-    private static ToDoLab sToDoLab;
+    private static OtherLab sOtherLab;
     private Context mAppContext;
 
     private ArrayList<ToDoItem> mToDoItems;
 
     // Creates the ToDoLab
-    private ToDoLab( Context appContext ) {
+    private OtherLab(Context appContext) {
         mAppContext = appContext;
 
         mToDoItems = new ArrayList<ToDoItem>();
     }
 
     // Returns the EventLab
-    public static ToDoLab get( Context c ) {
-        if( sToDoLab == null ) {
-            sToDoLab = new ToDoLab( c.getApplicationContext() );
+    public static OtherLab get( Context c ) {
+        if( sOtherLab == null ) {
+            sOtherLab = new OtherLab( c.getApplicationContext() );
         }
-        return sToDoLab;
+        return sOtherLab;
     }
 
     // Returns the list of the To-Do items

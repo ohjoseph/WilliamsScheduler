@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 /**
  * Created by Joseph on 1/13/15.
  */
-public class ScheduleListActivity extends SingleFragmentActivity {
+public class MainActivity extends SingleFragmentActivity {
 
     // Allows ScheduleFragmentActivity to use SingleFragmentActivity
     @Override
