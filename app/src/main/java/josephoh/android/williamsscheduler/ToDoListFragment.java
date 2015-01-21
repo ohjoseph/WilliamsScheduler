@@ -5,6 +5,8 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,8 @@ public class ToDoListFragment extends ListFragment {
         mToDoItems = OtherLab.get( getActivity() ).getToDoItems();
 
         // Creates an adapter to manage ToDoItems
+        ToDoAdapter todoAdapter = new ToDoAdapter( mToDoItems );
+        setListAdapter( todoAdapter );
     }
 
     private class ToDoAdapter extends ArrayAdapter<ToDoItem> {
@@ -41,6 +45,41 @@ public class ToDoListFragment extends ListFragment {
                 convertView = getActivity().getLayoutInflater()
                         .inflate( R.layout.list_item_to_do_item );
             }
+
+            // Configures the view for the ToDoItem
+            ToDoItem tdItem = getItem( position );
+
+            // Initializes the priority button
+            Button priorityButton =
+                    (Button) convertView.findViewById( R.id.todo_list_item_priority_button );
+            // Sets its priority
+            priorityButton.setBackgroundColor( tdItem.getPriority() );
+            // Sets click listener
+            priorityButton.setOnClickListener( new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Able to change priority
+                }
+            });
+
+            // Initializes the title
+            TextView titleText =
+                    (TextView) convertView.findViewById( R.id.todo_list_item_title );
+            // Sets the title
+            titleText.setText( tdItem.getTitle() );
+
+            // Initializes the context
+            TextView contextText =
+                    (TextView) convertView.findViewById( R.id.todo_list_item_context );
+            // Sets the context
+            contextText.setText( tdItem.getContext() );
+
+            // Initializes the time
+            TextView timeText =
+                    (TextView) convertView.findViewById( R.id.todo_list_item_time );
+            timeText.setText(tdItem.getTime());
+
+            return convertView;
         }
     }
 }
