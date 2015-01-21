@@ -32,6 +32,14 @@ public class ToDoListFragment extends ListFragment {
         setListAdapter( todoAdapter );
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // Updates the adapter
+        ( (ToDoAdapter)getListAdapter() ).notifyDataSetChanged();
+    }
+
     private class ToDoAdapter extends ArrayAdapter<ToDoItem> {
 
         public ToDoAdapter( ArrayList<ToDoItem> todoitems ) {
@@ -43,7 +51,7 @@ public class ToDoListFragment extends ListFragment {
             // Inflate new list item view if it doesn't exist
             if( convertView == null ) {
                 convertView = getActivity().getLayoutInflater()
-                        .inflate( R.layout.list_item_to_do_item );
+                        .inflate( R.layout.list_item_to_do_item, null );
             }
 
             // Configures the view for the ToDoItem

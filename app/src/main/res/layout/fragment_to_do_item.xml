@@ -104,6 +104,6 @@
         android:hint="Enter a description"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:gravity="center_horizontal||left"/>
+        android:gravity="left"/>
 
 </LinearLayout>

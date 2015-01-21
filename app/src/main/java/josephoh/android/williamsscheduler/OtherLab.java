@@ -20,6 +20,13 @@ public class OtherLab {
         mAppContext = appContext;
 
         mToDoItems = new ArrayList<ToDoItem>();
+
+        // Adds items to the to do list
+        for( int i = 0; i < 6; i++ ) {
+            ToDoItem tdItem = new ToDoItem();
+            tdItem.setTitle( "Item # " + i );
+            mToDoItems.add( tdItem );
+        }
     }
 
     // Returns the EventLab
