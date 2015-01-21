@@ -1,13 +1,13 @@
 package josephoh.android.williamsscheduler;
 
+import android.graphics.Color;
+
 import java.util.UUID;
 
 /**
  * Created by Joseph on 1/10/15.
  */
 public class ToDoItem {
-
-    private static int color_GREEN = -16711936;
 
     // The ID of the item
     private UUID mID = UUID.randomUUID();
@@ -20,7 +20,7 @@ public class ToDoItem {
     // The context of the item
     private String context = "Home";
     // The priority of the item
-    private int priority = color_GREEN;
+    private int priority = Color.GREEN;
     // The time it takes
     private int time = 10;
 
