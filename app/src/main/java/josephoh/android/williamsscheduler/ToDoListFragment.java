@@ -1,11 +1,13 @@
 package josephoh.android.williamsscheduler;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -30,6 +32,17 @@ public class ToDoListFragment extends ListFragment {
         // Creates an adapter to manage ToDoItems
         ToDoAdapter todoAdapter = new ToDoAdapter( mToDoItems );
         setListAdapter( todoAdapter );
+    }
+
+    @Override
+    public void onListItemClick( ListView l, View v, int position, long id ) {
+        // Gets the clicked To-Do item
+        ToDoItem td = ( (ToDoAdapter)getListAdapter() ).getItem( position );
+
+        // Starts the To-Do item activity
+        Intent i = new Intent( getActivity(), ToDoActivity.class );
+        i.putExtra( ToDoFragment.EXTRA_TODO_ID, td.getID() );
+        startActivity( i );
     }
 
     @Override

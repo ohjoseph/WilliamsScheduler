@@ -32,6 +32,7 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
         // Creates an ArrayAdapter that manages DayEvent objects
         DayEventAdapter adapter =
                 new DayEventAdapter( mDayEvents );
+        //asdlfjsa
 
         // Sets the adapter for the ListView
         setListAdapter(adapter);
@@ -39,6 +40,7 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
+        // Gets the clicked DayEvent
         DayEvent dayEvent = ( (DayEventAdapter)getListAdapter() ).getItem(position);
 
         // Starts a new Day Event

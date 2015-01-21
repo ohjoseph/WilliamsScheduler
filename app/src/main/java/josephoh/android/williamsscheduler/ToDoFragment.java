@@ -17,7 +17,7 @@ import java.util.UUID;
 public class ToDoFragment extends Fragment {
 
     // TAG to identify the id of the extra argument
-    private static final String EXTRA_TODO_ID = "com.josephoh.williamsScheduler.todo_ID";
+    public static final String EXTRA_TODO_ID = "com.josephoh.williamsScheduler.todo_ID";
 
     private ToDoItem mToDoItem;
     private EditText mTitleText;

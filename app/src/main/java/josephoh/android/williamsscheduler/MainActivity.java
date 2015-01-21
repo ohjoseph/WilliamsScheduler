@@ -60,8 +60,10 @@ public class MainActivity extends ActionBarActivity {
         // Returns the page title for the indicator tab
         @Override
         public CharSequence getPageTitle( int position ) {
-            // Fragment fragment = getItem( position );
-            return "Page " + position;
+            if( position == 0 )
+                return "Schedule";
+            // else if( position == 1 )
+                return "To-Do List";
         }
     }
 }
