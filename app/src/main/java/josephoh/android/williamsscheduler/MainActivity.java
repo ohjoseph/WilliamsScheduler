@@ -33,12 +33,14 @@ public class MainActivity extends ActionBarActivity {
         private static int numberOfItems = 2;
 
         public listPagerFragmentAdapter( FragmentManager fm ) {
+
             super( fm );
         }
 
         // Returns the total number of pages
         @Override
         public int getCount() {
+
             return numberOfItems;
         }
 
@@ -62,7 +64,7 @@ public class MainActivity extends ActionBarActivity {
         public CharSequence getPageTitle( int position ) {
             if( position == 0 )
                 return "Schedule";
-            // else if( position == 1 )
+            else // if( position == 1 )
                 return "To-Do List";
         }
     }

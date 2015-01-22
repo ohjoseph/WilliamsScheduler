@@ -27,7 +27,7 @@ public class ToDoListFragment extends ListFragment {
         super.onCreate( savedInstanceState );
 
         // Retrieves existing ToDoItems list
-        mToDoItems = OtherLab.get( getActivity() ).getToDoItems();
+        mToDoItems = TodayLab.get( getActivity() ).getToDoItems();
 
         // Creates an adapter to manage ToDoItems
         ToDoAdapter todoAdapter = new ToDoAdapter( mToDoItems );
@@ -43,6 +43,7 @@ public class ToDoListFragment extends ListFragment {
         Intent i = new Intent( getActivity(), ToDoActivity.class );
         i.putExtra( ToDoFragment.EXTRA_TODO_ID, td.getID() );
         startActivity( i );
+
     }
 
     @Override
@@ -75,13 +76,6 @@ public class ToDoListFragment extends ListFragment {
                     (Button) convertView.findViewById( R.id.todo_list_item_priority_button );
             // Sets its priority
             priorityButton.setBackgroundColor( tdItem.getPriority() );
-            // Sets click listener
-            priorityButton.setOnClickListener( new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Able to change priority
-                }
-            });
 
             // Initializes the title
             TextView titleText =

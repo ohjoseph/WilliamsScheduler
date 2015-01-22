@@ -8,52 +8,62 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/event_title"
-        style="?android:listSeparatorTextViewStyle"
-        android:elegantTextHeight="true"
-        android:textSize="@dimen/abc_text_size_medium_material" />
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:textSize="14sp"
+        style="?android:listSeparatorTextViewStyle" />
 
     <EditText
         android:id="@+id/event_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/enter_event_title"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/event_time"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
         style="?android:listSeparatorTextViewStyle"
         android:elegantTextHeight="true"
-        android:textSize="@dimen/abc_text_size_medium_material"
-        android:layout_marginTop="20dp"
+        android:textSize="14sp"
         />
 
     <Button
         android:id="@+id/event_time_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp" />
 
      <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/event_duration"
         style="?android:listSeparatorTextViewStyle"
-        android:textSize="@dimen/abc_text_size_medium_material"
+        android:textSize="14sp"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="5dp"
         />
 
     <NumberPicker
         android:id="@+id/duration_timePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         />
 
     <TextView
@@ -63,14 +73,17 @@
         style="?android:listSeparatorTextViewStyle"
         android:textSize="@dimen/abc_text_size_medium_material"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         />
 
     <EditText
         android:id="@+id/event_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:hint="@string/event_description_hint"/>
 
 </LinearLayout>

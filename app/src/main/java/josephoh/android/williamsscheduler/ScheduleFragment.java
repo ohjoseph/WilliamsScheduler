@@ -48,7 +48,7 @@ public class ScheduleFragment extends Fragment {
 
         UUID eventID = (UUID) getArguments().getSerializable( EXTRA_DAYEVENT_ID );
 
-        mDayEvent = EventLab.get( getActivity() ).getDayEvent( eventID );
+        mDayEvent = TodayLab.get(getActivity()).getDayEvent( eventID );
     }
 
     @Override

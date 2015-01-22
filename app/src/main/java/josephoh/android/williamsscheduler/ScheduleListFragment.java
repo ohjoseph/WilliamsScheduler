@@ -27,12 +27,11 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
         getActivity().setTitle(R.string.schedule_title);
 
         // Returns the ArrayList for the Day's Events and To Do Items
-        mDayEvents = EventLab.get(getActivity()).getDayEvents();
+        mDayEvents = TodayLab.get(getActivity()).getDayEvents();
 
         // Creates an ArrayAdapter that manages DayEvent objects
         DayEventAdapter adapter =
                 new DayEventAdapter( mDayEvents );
-        //asdlfjsa
 
         // Sets the adapter for the ListView
         setListAdapter(adapter);

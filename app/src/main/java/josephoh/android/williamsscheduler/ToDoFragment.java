@@ -44,7 +44,7 @@ public class ToDoFragment extends Fragment {
 
         // Gets the specific ToDoItem from the Lab
         UUID thisID = (UUID) getArguments().getSerializable( EXTRA_TODO_ID );
-        mToDoItem = OtherLab.get(getActivity()).getToDoItem( thisID );
+        mToDoItem = TodayLab.get(getActivity()).getToDoItem( thisID );
     }
 
     @Override
