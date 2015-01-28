@@ -30,7 +30,7 @@ public class MainActivity extends ActionBarActivity {
 
     public static class listPagerFragmentAdapter extends FragmentPagerAdapter {
 
-        private static int numberOfItems = 2;
+        private static int numberOfItems = 3;
 
         public listPagerFragmentAdapter( FragmentManager fm ) {
 
@@ -52,8 +52,8 @@ public class MainActivity extends ActionBarActivity {
                     return new ScheduleListFragment();
                 case 1: // Shows the to do list fragment
                     return new ToDoListFragment();
-                // case 2: // Shows the projects fragment
-                   // return null;
+                case 2: // Shows the projects fragment
+                    return new ProjectListFragment();
                 default:
                     return null;
             }
@@ -64,8 +64,10 @@ public class MainActivity extends ActionBarActivity {
         public CharSequence getPageTitle( int position ) {
             if( position == 0 )
                 return "Schedule";
-            else // if( position == 1 )
+            else if( position == 1 )
                 return "To-Do List";
+            else
+                return "Projects";
         }
     }
 }

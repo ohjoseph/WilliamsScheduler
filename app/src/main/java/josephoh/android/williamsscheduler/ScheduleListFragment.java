@@ -1,6 +1,7 @@
 package josephoh.android.williamsscheduler;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,26 +76,16 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
 
             // Sets the time
             TextView timeTextView = (TextView) convertView.findViewById(R.id.time_id);
-            int hour = dE.getHour();
-            if (hour < 12 ) {
-                timeTextView.setText( hour + dE.getMinute() + " AM" );
-            } else if ( hour == 24 ) {
-                timeTextView.setText(12 + dE.getMinute() + " AM");
-            } else if ( hour == 12 ) {
-                timeTextView.setText( 12 + dE.getMinute() + " PM");
-            } else if (hour > 12) {
-                timeTextView.setText( (hour%12) + dE.getMinute() + " PM");
-            }
+            timeTextView.setText( dE.getHour() + ":" + dE.getMinute() + " " + dE.getAM() );
+
 
             // Sets the title
             TextView titleTextView = (TextView) convertView.findViewById(R.id.title_id);
             titleTextView.setText( dE.getTitle() );
 
-            // Sets the divider bar
-            View dividerLine = convertView.findViewById(R.id.divider_line);
-
-            // Sets the Time Button
-            // Button timeButton = (Button) convertView.findViewById( R.id.event_time_button );
+            if( ! titleTextView.getText().equals( "Free" ) ) {
+                titleTextView.setBackgroundColor( Color.rgb( 153, 255, 204 ) );
+            }
 
             return convertView;
         }

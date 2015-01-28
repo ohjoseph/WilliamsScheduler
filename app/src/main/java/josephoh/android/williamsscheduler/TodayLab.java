@@ -15,6 +15,7 @@ public class TodayLab {
 
     private ArrayList<DayEvent> mDayEvents;
     private ArrayList<ToDoItem> mToDoItems;
+    private ArrayList<ProjectItem> mProjectItems;
 
     // Creates the EventLab
     private TodayLab(Context appContext) {
@@ -22,12 +23,28 @@ public class TodayLab {
         mAppContext = appContext;
         mDayEvents = new ArrayList<DayEvent>();
         mToDoItems = new ArrayList<ToDoItem>();
+        mProjectItems = new ArrayList<ProjectItem>();
 
         // Default events
         for (int i = 0; i < 17; i++) {
             DayEvent d = new DayEvent();
             d.setTitle("Free");
-            d.setHour(8 + i);
+            int hour = 8 + i;
+
+            if ( hour < 12 ) {
+                d.setAM( "AM" );
+                d.setHour( hour + "" );
+            } else if ( hour == 24 ) {
+                d.setAM( "AM" );
+                d.setHour( 12 + "" );
+            } else if ( hour == 12 ) {
+                d.setAM( "PM" );
+                d.setHour( 12 + "" );
+            } else if ( hour > 12) {
+                d.setAM( "PM" );
+                d.setHour( hour % 12 + "" );
+            }
+
             mDayEvents.add(d);
         }
 
@@ -36,6 +53,14 @@ public class TodayLab {
             ToDoItem tdItem = new ToDoItem();
             tdItem.setTitle("Item # " + i);
             mToDoItems.add(tdItem);
+        }
+
+        // Default projects
+        for( int i = 0; i < 6; i++ ) {
+            ProjectItem pI = new ProjectItem();
+            pI.setTitle( "Project # " + i );
+            pI.setNextStep( "Start this project" );
+            mProjectItems.add( pI );
         }
     }
 
@@ -73,6 +98,23 @@ public class TodayLab {
             if( t.getID().equals( id ) ) {
                 return t;
             }
+        }
+        return null;
+    }
+
+    // Returns the list of Project Items
+    public ArrayList<ProjectItem> getProjects() {
+
+        return mProjectItems;
+    }
+
+    // Returns a specific project item
+    public ProjectItem getProjectItem( UUID id ) {
+
+        // Checks all UUIDs against the given one
+        for( ProjectItem pI : mProjectItems ) {
+            if( pI.getID().equals( id ) )
+                return pI;
         }
         return null;
     }

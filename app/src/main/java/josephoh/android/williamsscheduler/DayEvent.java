@@ -17,8 +17,36 @@ public class DayEvent {
     // The description of the event
     private String mDesc;
     // The time of the Event
-    private int mHour;
-    private int mMinute;
+    private String mHour;
+    private String mMinute = "00";
+    private String mAM;
+    // The duration
+    private int mDurHour;
+    private int mDurMinute;
+
+    public int getDurHour() {
+        return mDurHour;
+    }
+
+    public void setDurHour(int durHour) {
+        mDurHour = durHour;
+    }
+
+    public int getDurMinute() {
+        return mDurMinute;
+    }
+
+    public void setDurMinute(int durMinute) {
+        mDurMinute = durMinute;
+    }
+
+    public String getAM() {
+        return mAM;
+    }
+
+    public void setAM( String AM) {
+        mAM = AM;
+    }
 
     public UUID getID() {
         return mID;
@@ -48,13 +76,13 @@ public class DayEvent {
         mDesc = desc;
     }
 
-    public int getHour() { return mHour; }
+    public String getHour() { return mHour; }
 
-    public void setHour(int hour) { mHour = hour; }
+    public void setHour(String hour) { mHour = hour; }
 
-    public int getMinute() { return mMinute; }
+    public String getMinute() { return mMinute; }
 
-    public void setMinute(int minute) { mMinute = minute; }
+    public void setMinute(String minute) { mMinute = minute; }
 
     @Override
     public String toString() { return mTitle; }

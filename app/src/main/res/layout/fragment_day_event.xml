@@ -23,10 +23,11 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginBottom="5dp"
+        android:selectAllOnFocus="true"
         />
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/event_time"
         android:layout_marginLeft="20dp"
@@ -38,15 +39,46 @@
         android:textSize="14sp"
         />
 
-    <Button
-        android:id="@+id/event_time_button"
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp" />
+        android:orientation="horizontal">
 
-     <TextView
+        <TextView
+            android:layout_alignParentLeft="true"
+            android:id="@+id/event_hour_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center"/>
+
+        <Spinner
+            android:id="@+id/event_minute_spinner"
+            android:gravity="center"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@id/event_hour_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_toRightOf="@id/event_minute_spinner"
+            android:id="@+id/event_am_textview"
+            android:layout_width="wrap_content"
+            android:text="PM"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/event_duration"
@@ -58,13 +90,54 @@
         android:layout_marginBottom="5dp"
         />
 
-    <NumberPicker
-        android:id="@+id/duration_timePicker"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        />
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:id="@+id/event_duration_hour"
+            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_toRightOf="@id/event_duration_hour"
+            android:id="@+id/asdf"
+            android:text="Hours"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/event_duration_minute"
+            android:layout_toRightOf="@id/asdf"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_toRightOf="@id/event_duration_minute"
+            android:text="Minutes"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        </RelativeLayout>
 
     <TextView
         android:layout_width="match_parent"
@@ -72,7 +145,7 @@
         android:text="@string/event_description"
         style="?android:listSeparatorTextViewStyle"
         android:textSize="@dimen/abc_text_size_medium_material"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -80,6 +153,7 @@
 
     <EditText
         android:id="@+id/event_description"
+        android:selectAllOnFocus="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
