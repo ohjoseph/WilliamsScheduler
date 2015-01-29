@@ -1,6 +1,8 @@
 package josephoh.android.williamsscheduler;
 
-import java.util.Date;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.UUID;
 
 /**
@@ -8,10 +10,18 @@ import java.util.UUID;
  */
 public class DayEvent {
 
+    // JSON constants
+    private static final String JSON_ID = "id";
+    private static final String JSON_TITLE = "title";
+    private static final String JSON_DESC = "desc";
+    private static final String JSON_HOUR = "hour";
+    private static final String JSON_MIN = "minute";
+    private static final String JSON_AM = "am";
+    private static final String JSON_DURHOUR = "durhour";
+    private static final String JSON_DURMIN = "durmin";
+
     // The ID of the event
     private UUID mID = UUID.randomUUID();
-    // The Day of the event
-    private Date mDate;
     // The title of the event
     private String mTitle;
     // The description of the event
@@ -23,6 +33,20 @@ public class DayEvent {
     // The duration
     private int mDurHour;
     private int mDurMinute;
+
+    public DayEvent( JSONObject json ) throws JSONException {
+        mID = UUID.fromString( json.getString( JSON_ID ) );
+        mTitle = json.getString( JSON_TITLE );
+        if( json.has( JSON_DESC ) )
+        mDesc = json.getString( JSON_DESC );
+        mHour = json.getString( JSON_HOUR );
+        mMinute = json.getString( JSON_MIN );
+        mAM = json.getString( JSON_AM );
+        if( json.has( JSON_DURHOUR ) )
+        mDurHour = json.getInt( JSON_DURHOUR );
+        if( json.has( JSON_DURMIN ) )
+        mDurMinute = json.getInt( JSON_DURMIN );
+    }
 
     public int getDurHour() {
         return mDurHour;
@@ -52,14 +76,6 @@ public class DayEvent {
         return mID;
     }
 
-    public Date getDate() {
-        return mDate;
-    }
-
-    public void setDate(Date date) {
-        mDate = date;
-    }
-
     public String getTitle() {
         return mTitle;
     }
@@ -86,4 +102,17 @@ public class DayEvent {
 
     @Override
     public String toString() { return mTitle; }
+
+    public JSONObject toJSON() throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put( JSON_ID, mID );
+        json.put( JSON_AM, mAM );
+        json.put( JSON_TITLE, mTitle );
+        json.put( JSON_DESC, mDesc );
+        json.put( JSON_HOUR, mHour );
+        json.put( JSON_MIN, mMinute );
+        json.put( JSON_DURHOUR, mDurHour );
+        json.put( JSON_DURMIN, mDurMinute );
+        return json;
+    }
 }

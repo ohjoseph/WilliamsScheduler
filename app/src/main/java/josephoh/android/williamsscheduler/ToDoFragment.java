@@ -95,4 +95,11 @@ public class ToDoFragment extends Fragment {
 
         return v;
     }
+
+    @Override
+    public void onPause() {
+        // Saves the list of To Do Items
+        super.onPause();
+        TodayLab.get( getActivity() ).saveToDoItems();
+    }
 }

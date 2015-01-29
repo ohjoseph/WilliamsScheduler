@@ -27,6 +27,9 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
         // Sets the Activity's Action Bar Title
         getActivity().setTitle(R.string.schedule_title);
 
+        // Sets the menu
+        setHasOptionsMenu( true );
+
         // Returns the ArrayList for the Day's Events and To Do Items
         mDayEvents = TodayLab.get(getActivity()).getDayEvents();
 

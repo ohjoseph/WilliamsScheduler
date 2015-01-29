@@ -1,6 +1,7 @@
 package josephoh.android.williamsscheduler;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -10,12 +11,19 @@ import java.util.UUID;
  */
 public class TodayLab {
 
+    private static final String TAG = "TodayLab";
+    private static final String FILENAME1 = "events.json";
+    private static final String FILENAME2 = "todo.json";
+    private static final String FILENAME3 = "projects.json";
+
     private static TodayLab sTodayLab;
     private Context mAppContext;
 
     private ArrayList<DayEvent> mDayEvents;
     private ArrayList<ToDoItem> mToDoItems;
     private ArrayList<ProjectItem> mProjectItems;
+
+    private TodayLabJSONSerializer mSerializer;
 
     // Creates the EventLab
     private TodayLab(Context appContext) {
@@ -24,6 +32,8 @@ public class TodayLab {
         mDayEvents = new ArrayList<DayEvent>();
         mToDoItems = new ArrayList<ToDoItem>();
         mProjectItems = new ArrayList<ProjectItem>();
+
+        mSerializer = new TodayLabJSONSerializer( mAppContext, FILENAME1, FILENAME2, FILENAME3 );
 
         // Default events
         for (int i = 0; i < 17; i++) {
@@ -102,6 +112,10 @@ public class TodayLab {
         return null;
     }
 
+    public void addToDoItem( ToDoItem td ) {
+        mToDoItems.add( td );
+    }
+
     // Returns the list of Project Items
     public ArrayList<ProjectItem> getProjects() {
 
@@ -117,6 +131,36 @@ public class TodayLab {
                 return pI;
         }
         return null;
+    }
+
+    public boolean saveDayEvents() {
+        try {
+            mSerializer.saveDayEvents( mDayEvents );
+            return true;
+        } catch( Exception e ) {
+            Log.e(TAG, "Error saving files: ", e );
+            return false;
+        }
+    }
+
+    public boolean saveToDoItems() {
+        try {
+            mSerializer.saveToDoItems( mToDoItems );
+            return true;
+        } catch( Exception e ) {
+            Log.e(TAG, "Error saving files: ", e );
+            return false;
+        }
+    }
+
+    public boolean saveProjectItems() {
+        try {
+            mSerializer.saveProjectItems( mProjectItems );
+            return true;
+        } catch( Exception e ) {
+            Log.e(TAG, "Error saving files: ", e );
+            return false;
+        }
     }
 
 }

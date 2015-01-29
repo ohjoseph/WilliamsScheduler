@@ -190,4 +190,11 @@ public class ScheduleFragment extends Fragment {
         return v;
     }
 
+    @Override
+    public void onPause() {
+        // Saves the list of day events
+        super.onPause();
+        TodayLab.get( getActivity() ).saveDayEvents();
+    }
+
 }
