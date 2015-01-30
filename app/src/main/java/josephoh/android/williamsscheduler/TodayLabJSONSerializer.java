@@ -4,8 +4,13 @@ import android.content.Context;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONTokener;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
@@ -92,5 +97,83 @@ public class TodayLabJSONSerializer {
             if( writer != null )
                 writer.close();
         }
+    }
+
+    public ArrayList<DayEvent> loadDayEvents() throws IOException, JSONException {
+        ArrayList<DayEvent> dayEvents = new ArrayList<DayEvent>();
+        BufferedReader reader = null;
+        try{
+            InputStream in = mContext.openFileInput( mFileName1 );
+            reader = new BufferedReader( new InputStreamReader( in ) );
+            StringBuilder jsonString = new StringBuilder();
+            String line = null;
+            while( (line = reader.readLine()) != null ) {
+                jsonString.append(line);
+            }
+
+            JSONArray array = (JSONArray) new JSONTokener( jsonString.toString() ).nextValue();
+
+            for( int i = 0; i < array.length(); i++ ) {
+                dayEvents.add( new DayEvent( array.getJSONObject( i ) ) );
+            }
+        } catch ( FileNotFoundException e ) {
+
+        } finally {
+            if( reader != null )
+                reader.close();
+        }
+        return dayEvents;
+    }
+
+    public ArrayList<ToDoItem> loadToDoItems() throws IOException, JSONException {
+        ArrayList<ToDoItem> todoitems = new ArrayList<ToDoItem>();
+        BufferedReader reader = null;
+        try{
+            InputStream in = mContext.openFileInput( mFileName2 );
+            reader = new BufferedReader( new InputStreamReader( in ) );
+            StringBuilder jsonString = new StringBuilder();
+            String line = null;
+            while( (line = reader.readLine()) != null ) {
+                jsonString.append(line);
+            }
+
+            JSONArray array = (JSONArray) new JSONTokener( jsonString.toString() ).nextValue();
+
+            for( int i = 0; i < array.length(); i++ ) {
+                todoitems.add( new ToDoItem( array.getJSONObject( i ) ) );
+            }
+        } catch ( FileNotFoundException e ) {
+
+        } finally {
+            if( reader != null )
+                reader.close();
+        }
+        return todoitems;
+    }
+
+    public ArrayList<ProjectItem> loadProjectItems() throws IOException, JSONException {
+        ArrayList<ProjectItem> projectItems = new ArrayList<ProjectItem>();
+        BufferedReader reader = null;
+        try{
+            InputStream in = mContext.openFileInput( mFileName3 );
+            reader = new BufferedReader( new InputStreamReader( in ) );
+            StringBuilder jsonString = new StringBuilder();
+            String line = null;
+            while( (line = reader.readLine()) != null ) {
+                jsonString.append(line);
+            }
+
+            JSONArray array = (JSONArray) new JSONTokener( jsonString.toString() ).nextValue();
+
+            for( int i = 0; i < array.length(); i++ ) {
+                projectItems.add( new ProjectItem( array.getJSONObject( i ) ) );
+            }
+        } catch ( FileNotFoundException e ) {
+
+        } finally {
+            if( reader != null )
+                reader.close();
+        }
+        return projectItems;
     }
 }

@@ -29,48 +29,53 @@ public class TodayLab {
     private TodayLab(Context appContext) {
         // The Instance variables
         mAppContext = appContext;
-        mDayEvents = new ArrayList<DayEvent>();
-        mToDoItems = new ArrayList<ToDoItem>();
-        mProjectItems = new ArrayList<ProjectItem>();
-
         mSerializer = new TodayLabJSONSerializer( mAppContext, FILENAME1, FILENAME2, FILENAME3 );
 
-        // Default events
-        for (int i = 0; i < 17; i++) {
-            DayEvent d = new DayEvent();
-            d.setTitle("Free");
-            int hour = 8 + i;
+        try {
 
-            if ( hour < 12 ) {
-                d.setAM( "AM" );
-                d.setHour( hour + "" );
-            } else if ( hour == 24 ) {
-                d.setAM( "AM" );
-                d.setHour( 12 + "" );
-            } else if ( hour == 12 ) {
-                d.setAM( "PM" );
-                d.setHour( 12 + "" );
-            } else if ( hour > 12) {
-                d.setAM( "PM" );
-                d.setHour( hour % 12 + "" );
+            mDayEvents = mSerializer.loadDayEvents();
+
+            if (mDayEvents.size() == 0) {
+
+                refreshDayEvents();
             }
 
-            mDayEvents.add(d);
+        } catch (Exception e) {
+
+            mDayEvents = new ArrayList<DayEvent>();
         }
 
-        // Default To-Do items
-        for (int i = 0; i < 6; i++) {
-            ToDoItem tdItem = new ToDoItem();
-            tdItem.setTitle("Item # " + i);
-            mToDoItems.add(tdItem);
+        try {
+
+            mToDoItems = mSerializer.loadToDoItems();
+
+        } catch (Exception e) {
+
+            mToDoItems = new ArrayList<ToDoItem>();
+
+            // Default To-Do items
+            for (int i = 0; i < 6; i++) {
+                ToDoItem tdItem = new ToDoItem();
+                tdItem.setTitle("Item # " + i);
+                mToDoItems.add(tdItem);
+            }
         }
 
-        // Default projects
-        for( int i = 0; i < 6; i++ ) {
-            ProjectItem pI = new ProjectItem();
-            pI.setTitle( "Project # " + i );
-            pI.setNextStep( "Start this project" );
-            mProjectItems.add( pI );
+        try {
+
+            mProjectItems = mSerializer.loadProjectItems();
+
+        } catch (Exception e) {
+
+            mProjectItems = new ArrayList<ProjectItem>();
+
+            // Default projects
+            for (int i = 0; i < 6; i++) {
+                ProjectItem pI = new ProjectItem();
+                pI.setTitle("Project # " + i);
+                pI.setNextStep("Start this project");
+                mProjectItems.add(pI);
+            }
         }
     }
 
@@ -133,6 +138,11 @@ public class TodayLab {
         return null;
     }
 
+    // Adds a project item
+    public void addProjectItem( ProjectItem p ) {
+        mProjectItems.add( p );
+    }
+
     public boolean saveDayEvents() {
         try {
             mSerializer.saveDayEvents( mDayEvents );
@@ -161,6 +171,36 @@ public class TodayLab {
             Log.e(TAG, "Error saving files: ", e );
             return false;
         }
+    }
+
+    public ArrayList<DayEvent> refreshDayEvents() {
+
+        mDayEvents = new ArrayList<DayEvent>();
+
+        // Default events
+        for (int i = 0; i < 17; i++) {
+            DayEvent d = new DayEvent();
+            d.setTitle("Free");
+            int hour = 8 + i;
+
+            if (hour < 12) {
+                d.setAM("AM");
+                d.setHour(hour + "");
+            } else if (hour == 24) {
+                d.setAM("AM");
+                d.setHour(12 + "");
+            } else if (hour == 12) {
+                d.setAM("PM");
+                d.setHour(12 + "");
+            } else if (hour > 12) {
+                d.setAM("PM");
+                d.setHour(hour % 12 + "");
+            }
+
+            mDayEvents.add(d);
+        }
+
+        return mDayEvents;
     }
 
 }

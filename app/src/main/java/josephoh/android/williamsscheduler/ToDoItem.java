@@ -21,19 +21,27 @@ public class ToDoItem {
     private static final String JSON_TIME = "time";
 
     // The ID of the item
-    private UUID mID = UUID.randomUUID();
+    private UUID mID;
     // Whether the item has been finished
-    private boolean isDone = false;
+    private boolean isDone;
     // The name of the item
     private String mTitle;
     // A short description of the item
     private String mDesc;
     // The context of the item
-    private String context = "Home";
+    private String context;
     // The priority of the item
-    private int priority = Color.GREEN;
+    private int priority;
     // The time it takes
-    private int time = 10;
+    private int time;
+
+    public ToDoItem() {
+        mID = UUID.randomUUID();
+        isDone = false;
+        context = "Home";
+        priority = Color.GREEN;
+        time = 10;
+    }
 
     public ToDoItem( JSONObject json ) throws JSONException {
         mID = UUID.fromString( json.getString( JSON_ID ) );

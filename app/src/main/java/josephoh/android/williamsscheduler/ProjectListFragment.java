@@ -3,6 +3,9 @@ package josephoh.android.williamsscheduler;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -30,12 +33,43 @@ public class ProjectListFragment extends ListFragment {
         // Returns the ArrayList for the Day's Events and To Do Items
         mProjectItems = TodayLab.get(getActivity()).getProjects();
 
+        // Adds the options menu
+        setHasOptionsMenu( true );
+
         // Creates an ArrayAdapter that manages Project objects
         ProjectItemAdapter adapter =
                 new ProjectItemAdapter( mProjectItems );
 
         // Sets the adapter for the ListView
         setListAdapter(adapter);
+    }
+
+    @Override
+    public void onCreateOptionsMenu( Menu menu, MenuInflater inflater ) {
+        super.onCreateOptionsMenu( menu, inflater );
+
+        // Inflates the menu layout
+        inflater.inflate( R.menu.fragment_project_list, menu );
+    }
+
+    @Override
+    public boolean onOptionsItemSelected( MenuItem item ) {
+
+        switch( item.getItemId() ) {
+            // If add project item
+            case R.id.menu_item_new_project:
+                ProjectItem p = new ProjectItem();
+                TodayLab.get( getActivity() ).addProjectItem( p );
+
+                // Starts the new Project Fragment
+                Intent i = new Intent( getActivity(), ProjectActivity.class );
+                i.putExtra( ProjectFragment.EXTRA_PROJECT_ID, p.getID() );
+                startActivityForResult( i, 0 );
+                return true;
+            default:
+                return super.onOptionsItemSelected( item );
+        }
+
     }
 
     @Override

@@ -17,11 +17,15 @@ public class ProjectItem {
     private static final String JSON_OUTCOME = "outcome";
 
     // The components of the project item
-    private UUID mID = UUID.randomUUID();
+    private UUID mID;
     private String mTitle;
     private String mPurpose;
     private String mOutcome;
     private String mNextStep;
+
+    public ProjectItem() {
+        mID = UUID.randomUUID();
+    }
 
     public ProjectItem( JSONObject json ) throws JSONException {
         mID = UUID.fromString( json.getString( JSON_ID ) );

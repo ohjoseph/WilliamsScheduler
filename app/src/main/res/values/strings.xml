@@ -7,7 +7,6 @@
         <item>30</item>
         <item>45</item>
     </string-array>
-
     <string-array name="hour_options">
         <item>0</item>
         <item>1</item>
@@ -29,5 +28,6 @@
     <string name="to_do_activity_name">To-Do Item</string>
     <string name="title_activity_project">ProjectActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_clear_screen">Clear Screen</string>
 
 </resources>

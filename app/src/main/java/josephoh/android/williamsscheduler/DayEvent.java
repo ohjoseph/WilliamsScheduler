@@ -21,18 +21,23 @@ public class DayEvent {
     private static final String JSON_DURMIN = "durmin";
 
     // The ID of the event
-    private UUID mID = UUID.randomUUID();
+    private UUID mID;
     // The title of the event
     private String mTitle;
     // The description of the event
     private String mDesc;
     // The time of the Event
     private String mHour;
-    private String mMinute = "00";
+    private String mMinute;
     private String mAM;
     // The duration
     private int mDurHour;
     private int mDurMinute;
+
+    public DayEvent() {
+        mID = UUID.randomUUID();
+        mMinute = "00";
+    }
 
     public DayEvent( JSONObject json ) throws JSONException {
         mID = UUID.fromString( json.getString( JSON_ID ) );

@@ -25,14 +25,22 @@
         <activity
             android:name=".DayEventActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".ProjectActivity"
             android:label="@string/title_activity_project"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="josephoh.android.williamsscheduler.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ClearScreenActivity"
+            android:label="@string/title_activity_clear_screen"
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

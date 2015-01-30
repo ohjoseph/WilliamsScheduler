@@ -1,11 +1,13 @@
 package josephoh.android.williamsscheduler;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 
 /**
  * Created by Joseph on 1/13/15.
@@ -69,5 +71,11 @@ public class MainActivity extends ActionBarActivity {
             else
                 return "Projects";
         }
+    }
+
+    @Override
+    public void onActivityResult( int requestCode, int resultCode, Intent data ) {
+        super.onActivityResult( requestCode, resultCode, data );
+        Log.d( "Activity", "" + requestCode + resultCode );
     }
 }
