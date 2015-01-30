@@ -27,59 +27,59 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
     private DayEventAdapter adapter;
 
     @Override
-    public void onCreate( Bundle savedInstanceState ) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Sets the Activity's Action Bar Title
         getActivity().setTitle(R.string.schedule_title);
 
         // Sets the menu
-        setHasOptionsMenu( true );
+        setHasOptionsMenu(true);
 
         // Returns the ArrayList for the Day's Events and To Do Items
         mDayEvents = TodayLab.get(getActivity()).getDayEvents();
 
         // Creates an ArrayAdapter that manages DayEvent objects
-        adapter = new DayEventAdapter( mDayEvents );
+        adapter = new DayEventAdapter(mDayEvents);
 
         // Sets the adapter for the ListView
         setListAdapter(adapter);
     }
 
     @Override
-    public void onCreateOptionsMenu( Menu menu, MenuInflater inflater ) {
-        super.onCreateOptionsMenu( menu, inflater );
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
 
         // Inflates the menu layout
-        inflater.inflate( R.menu.fragment_schedule_list, menu );
+        inflater.inflate(R.menu.fragment_schedule_list, menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected( MenuItem item ) {
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch( item.getItemId() ) {
+        switch (item.getItemId()) {
             // If "refresh list" item
             case R.id.menu_item_refresh_schedule:
 
                 // Opens the refresh confirmation page
-                Intent i = new Intent( getActivity(), ClearScreenActivity.class );
+                Intent i = new Intent(getActivity(), ClearScreenActivity.class);
                 startActivityForResult(i, 1);
 
                 return true;
             default:
 
-                return super.onOptionsItemSelected( item );
+                return super.onOptionsItemSelected(item);
         }
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         // Gets the clicked DayEvent
-        DayEvent dayEvent = ( (DayEventAdapter)getListAdapter() ).getItem(position);
+        DayEvent dayEvent = ((DayEventAdapter) getListAdapter()).getItem(position);
 
         // Starts a new Day Event
-        Intent i = new Intent( getActivity(), DayEventActivity.class );
-        i.putExtra( ScheduleFragment.EXTRA_DAYEVENT_ID, dayEvent.getID() );
+        Intent i = new Intent(getActivity(), DayEventActivity.class);
+        i.putExtra(ScheduleFragment.EXTRA_DAYEVENT_ID, dayEvent.getID());
         startActivity(i);
     }
 
@@ -88,16 +88,16 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
         super.onResume();
 
         // Updates the ListView with the new information
-        ( (DayEventAdapter)getListAdapter() ).notifyDataSetChanged();
+        ((DayEventAdapter) getListAdapter()).notifyDataSetChanged();
     }
 
     @Override
-    public void onActivityResult( int requestCode, int resultCode, Intent data ) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.d("Fragment", "fragment" + requestCode + resultCode);
 
-        if( requestCode == 1 ) {
+        if (requestCode == 1) {
 
-            if( resultCode == Activity.RESULT_OK ) {
+            if (resultCode == Activity.RESULT_OK) {
 
                 updateEventAdapter();
             }
@@ -107,10 +107,10 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
     private void updateEventAdapter() {
 
         // Refreshes the list views
-        mDayEvents = TodayLab.get( getActivity() ).refreshDayEvents();
-        adapter = new DayEventAdapter( mDayEvents );
-        setListAdapter( adapter );
-        ( (DayEventAdapter)getListAdapter() ).notifyDataSetChanged();
+        mDayEvents = TodayLab.get(getActivity()).refreshDayEvents();
+        adapter = new DayEventAdapter(mDayEvents);
+        setListAdapter(adapter);
+        ((DayEventAdapter) getListAdapter()).notifyDataSetChanged();
     }
 
     private class DayEventAdapter extends ArrayAdapter<DayEvent> {
@@ -132,15 +132,15 @@ public class ScheduleListFragment extends android.support.v4.app.ListFragment {
 
             // Sets the time
             TextView timeTextView = (TextView) convertView.findViewById(R.id.time_id);
-            timeTextView.setText( dE.getHour() + ":" + dE.getMinute() + " " + dE.getAM() );
+            timeTextView.setText(dE.getHour() + ":" + dE.getMinute() + " " + dE.getAM());
 
 
             // Sets the title
             TextView titleTextView = (TextView) convertView.findViewById(R.id.title_id);
-            titleTextView.setText( dE.getTitle() );
+            titleTextView.setText(dE.getTitle());
 
-            if( ! titleTextView.getText().equals( "Free" ) ) {
-                titleTextView.setBackgroundColor( Color.rgb( 153, 255, 204 ) );
+            if (!titleTextView.getText().equals("Free")) {
+                titleTextView.setBackgroundColor(Color.rgb(153, 255, 204));
             }
 
             return convertView;

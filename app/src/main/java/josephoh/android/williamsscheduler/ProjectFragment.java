@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import java.util.UUID;
@@ -59,6 +60,14 @@ public class ProjectFragment extends Fragment {
 
         // Initializes the textviews
         EditText projectTitle = (EditText) v.findViewById( R.id.project_title );
+        projectTitle.setSelectAllOnFocus( true );
+        projectTitle.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                getActivity().getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            }
+        });
         projectTitle.setText( mProjectItem.getTitle() );
         projectTitle.addTextChangedListener( new TextWatcher() {
             @Override
@@ -80,6 +89,14 @@ public class ProjectFragment extends Fragment {
 
         EditText projectPurpose = (EditText) v.findViewById( R.id.project_purpose );
         projectPurpose.setText( mProjectItem.getPurpose() );
+        projectPurpose.setSelectAllOnFocus( true );
+        projectPurpose.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                getActivity().getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            }
+        });
         projectPurpose.addTextChangedListener( new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -99,7 +116,15 @@ public class ProjectFragment extends Fragment {
         });
 
         EditText projectOutcome = (EditText) v.findViewById( R.id.project_outcome );
+        projectOutcome.setSelectAllOnFocus( true );
         projectOutcome.setText( mProjectItem.getOutcome() );
+        projectOutcome.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                getActivity().getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            }
+        });
         projectOutcome.addTextChangedListener( new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -119,6 +144,13 @@ public class ProjectFragment extends Fragment {
         });
 
         EditText projectNextStep = (EditText) v.findViewById( R.id.project_next_action );
+        projectNextStep.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                getActivity().getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            }
+        });
         projectNextStep.setText( mProjectItem.getNextStep() );
         projectNextStep.addTextChangedListener( new TextWatcher() {
             @Override

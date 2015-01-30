@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 
 import java.util.UUID;
@@ -56,6 +57,16 @@ public class ToDoFragment extends Fragment {
 
         // Initializes the TitleText
         mTitleText = (EditText) v.findViewById( R.id.todo_title_textView );
+        mTitleText.setSelectAllOnFocus( true );
+        mTitleText.setText( mToDoItem.getTitle() );
+        mTitleText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                getActivity().getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            }
+        });
+
         mTitleText.addTextChangedListener( new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -76,6 +87,15 @@ public class ToDoFragment extends Fragment {
 
         // Initializes the description Textfield
         mDescription = (EditText) v.findViewById( R.id.todo_description );
+        mDescription.setText( mToDoItem.getDesc() );
+        mDescription.setSelectAllOnFocus( true );
+        mDescription.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                getActivity().getWindow().setSoftInputMode(
+                        WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+            }
+        });
         mDescription.addTextChangedListener( new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
